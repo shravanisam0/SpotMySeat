@@ -136,5 +136,5 @@ javac src/*.java
 - **Java** — Object-Oriented domain modeling (Inheritance, Polymorphism, Abstraction, Encapsulation, Composition)
 - **HTML5** — Semantic page structure with responsive meta tags
 - **CSS3** — Custom properties, CSS Grid, Flexbox, keyframe animations
-- **JavaScript (ES6+)** — Client-side booking engine with `localStorage` state management
+- **JavaScript** — Client-side booking engine with `localStorage` state management
 - **Zero External Dependencies** — Runs completely offline without server or internet connection
