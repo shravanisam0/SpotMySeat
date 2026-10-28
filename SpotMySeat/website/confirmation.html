@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="SpotMySeat — Your booking is confirmed! View your digital cinema ticket and booking details.">
+    <title>Booking Confirmed — SpotMySeat</title>
+    <link rel="icon" type="image/png" href="logo-icon.png">
+    <link rel="stylesheet" href="common.css">
+    <link rel="stylesheet" href="confirmation.css">
+</head>
+
+<body data-page="confirmation">
+
+    <!-- ======== NAVBAR ======== -->
+    <nav class="navbar">
+        <a href="index.html" class="navbar-brand">
+            <img src="logo-icon.png" alt="SpotMySeat Logo" class="logo-icon">
+            <span class="logo-text">SPOTMYSEAT</span>
+        </a>
+        <div class="navbar-venue">
+            <span class="venue-dot"></span>
+            <span>Grand Cineplex • City Center</span>
+        </div>
+        <div class="navbar-right"></div>
+    </nav>
+
+    <!-- ======== CONFIRMATION CONTENT ======== -->
+    <div class="confirmation-container fade-in">
+
+        <!-- Success Badge -->
+        <div class="success-badge">✓</div>
+        <h1 class="confirmation-title">Booking Confirmed!</h1>
+        <p class="confirmation-subtitle">Your seats have been successfully reserved. Enjoy the show! 🍿</p>
+
+        <!-- Ticket Voucher -->
+        <div class="ticket-voucher" id="ticket-voucher">
+            <div class="ticket-header">
+                <div class="ticket-logo">
+                    <img src="logo-icon.png" alt="SpotMySeat Logo" class="ticket-logo-img">
+                    <span>SPOTMYSEAT</span>
+                </div>
+                <div class="ticket-id-section">
+                    <div class="ticket-id-label">Booking ID</div>
+                    <div class="ticket-id-value" id="ticket-booking-id">—</div>
+                </div>
+            </div>
+
+            <div class="ticket-body">
+                <div class="ticket-movie-title" id="ticket-movie-title">—</div>
+
+                <div class="ticket-details-grid">
+                    <div class="ticket-detail-item">
+                        <span class="ticket-detail-label">📅 Date</span>
+                        <span class="ticket-detail-value" id="ticket-date">—</span>
+                    </div>
+                    <div class="ticket-detail-item">
+                        <span class="ticket-detail-label">🕐 Showtime</span>
+                        <span class="ticket-detail-value" id="ticket-time">—</span>
+                    </div>
+                    <div class="ticket-detail-item">
+                        <span class="ticket-detail-label">🏛️ Hall</span>
+                        <span class="ticket-detail-value" id="ticket-hall">—</span>
+                    </div>
+                    <div class="ticket-detail-item">
+                        <span class="ticket-detail-label">🎫 Tickets</span>
+                        <span class="ticket-detail-value" id="ticket-count">—</span>
+                    </div>
+                </div>
+
+                <div class="ticket-seats-section">
+                    <span class="ticket-detail-label">💺 Your Seats</span>
+                    <div class="ticket-seats-row" id="ticket-seats-row">
+                        <!-- Seat badges rendered by JavaScript -->
+                    </div>
+                </div>
+
+                <div class="ticket-details-grid">
+                    <div class="ticket-detail-item">
+                        <span class="ticket-detail-label">👤 Customer</span>
+                        <span class="ticket-detail-value" id="ticket-customer-name">—</span>
+                    </div>
+                    <div class="ticket-detail-item">
+                        <span class="ticket-detail-label">📧 Email</span>
+                        <span class="ticket-detail-value" id="ticket-customer-email">—</span>
+                    </div>
+                    <div class="ticket-detail-item">
+                        <span class="ticket-detail-label">📱 Phone</span>
+                        <span class="ticket-detail-value" id="ticket-customer-phone">—</span>
+                    </div>
+                </div>
+            </div>
+
+            <hr class="ticket-perforation">
+
+            <div class="ticket-footer">
+                <div class="ticket-total-section">
+                    <div class="ticket-total-label">Total Paid</div>
+                    <div class="ticket-total-amount" id="ticket-total-amount">₹0</div>
+                </div>
+                <div class="ticket-status">✓ Confirmed</div>
+            </div>
+
+            <div class="ticket-barcode">
+                <div class="barcode-lines" id="barcode-lines">
+                    <!-- Barcode lines rendered by JavaScript -->
+                </div>
+                <div class="barcode-text" id="barcode-text">SPOTMYSEAT-000000</div>
+            </div>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="action-buttons">
+            <a href="index.html" class="btn-primary" id="btn-book-another" onclick="clearBookingData()">
+                🎬 Book Another Movie
+            </a>
+            <button class="btn-secondary">
+                🖨️ Print Ticket
+            </button>
+        </div>
+    </div>
+
+    <!-- ======== FOOTER ======== -->
+    <footer class="site-footer">
+        <p><span class="footer-brand">SPOTMYSEAT</span> — Java OOP Mini Project</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

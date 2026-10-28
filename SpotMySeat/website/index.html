@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="SpotMySeat — Book movie tickets online. Browse now showing movies, pick your seats, and confirm instantly.">
+    <title>SpotMySeat — Movie Ticket Booking</title>
+    <link rel="icon" type="image/png" href="logo-icon.png">
+    <link rel="stylesheet" href="common.css">
+    <link rel="stylesheet" href="home.css">
+</head>
+
+<body data-page="home">
+
+    <!-- ======== NAVBAR ======== -->
+    <nav class="navbar" id="main-navbar">
+        <a href="index.html" class="navbar-brand">
+            <img src="logo-icon.png" alt="SpotMySeat Logo" class="logo-icon">
+            <span class="logo-text">SPOT</span>
+            <span class="logo-text1 id=website-name">MYSEAT</span>
+        </a>
+        <div class="navbar-venue">
+            <span class="venue-dot"></span>
+            <!-- <span>Pusad City • City Center</span> -->
+            <span><select class="places" id="locations">
+                    <option>Pusad</option>
+                    <option>Nagpur</option>
+                    <option>Pune</option>
+                    <option>Mumbai</option>
+                </select></span>
+        </div>
+        <div class="navbar-right">
+            <div class="search-container">
+                <img src="search-icon.png" alt="Search" class="search-icon">
+                <input type="text" class="search-input" id="search-input" placeholder="Search movies..."
+                    autocomplete="off">
+            </div>
+        </div>
+    </nav>
+
+    <!-- ======== HERO BANNER ======== -->
+    <section class="hero-banner" id="hero-banner" style="display:none;">
+        <div class="hero-bg" id="hero-bg"></div>
+        <div class="hero-content fade-in">
+            <span class="hero-badge"> TOP PICK TODAY</span>
+            <h1 class="hero-title" id="hero-title"></h1>
+            <div class="hero-meta" id="hero-meta"></div>
+            <p class="hero-description" id="hero-description"></p>
+            <a href="#" class="btn-primary" id="hero-cta">▶ Book Now</a>
+        </div>
+    </section>
+
+    <!-- ======== GENRE FILTER ======== -->
+    <section class="filter-section">
+        <div class="filter-bar" id="genre-filter">
+            <!-- Genre pills rendered by JavaScript -->
+        </div>
+    </section>
+
+    <!-- ======== MOVIES SECTION ======== -->
+    <div class="section-header">
+        <h2 class="section-title" id="section-title">Now Showing</h2>
+        <span class="section-count" id="movie-count"></span>
+    </div>
+
+    <div class="movies-grid" id="movies-grid">
+        <!-- Movie cards rendered by JavaScript -->
+    </div>
+
+    <!-- ======== EMPTY STATE ======== -->
+    <div class="empty-state" id="empty-state" style="display:none;">
+        <div class="empty-icon">🎞️</div>
+        <h3>No movies found</h3>
+        <p>Try a different search term or genre filter.</p>
+    </div>
+
+    <!-- ======== FOOTER ======== -->
+    <footer class="site-footer">
+        <p><span class="footer-brand">SPOTMYSEAT</span> — Java OOP Mini Project</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

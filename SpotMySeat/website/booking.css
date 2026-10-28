@@ -1,0 +1,567 @@
+/* ============================================================
+   SpotMySeat — Cinema Ticket Booking System
+   booking.css — Booking Page Styles (booking.html)
+   
+   Contains:
+   - Header with back navigation & selected movie overview
+   - 2-column booking layout (Hall selection + Sticky checkout)
+   - Date chips & showtime chips selectors
+   - Curved cinema screen representation
+   - Interactive 60-seat grid with VIP & Classic tiers
+   - Visual seat legend
+   - Sticky checkout panel & live cost breakdown
+   - Customer booking form & inline error validation
+   - Booking-specific responsive media queries
+   ============================================================ */
+
+/* ---- BOOKING HEADER ---- */
+.booking-header {
+    padding: var(--space-lg) var(--space-xl);
+    border-bottom: 1px solid var(--border-subtle);
+}
+
+.back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-sm);
+    color: var(--text-muted);
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: var(--space-md);
+    transition: color var(--transition-fast);
+    text-decoration: none;
+}
+
+.back-link:hover {
+    color: var(--primary-red);
+}
+
+.booking-movie-info {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+}
+
+.booking-movie-poster-mini {
+    width: 56px;
+    height: 80px;
+    border-radius: var(--radius-sm);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+    flex-shrink: 0;
+    overflow: hidden;
+    background-color: #222;
+}
+
+.booking-movie-poster-mini img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.booking-movie-details h1 {
+    font-size: 22px;
+    font-weight: 800;
+    margin-bottom: 4px;
+}
+
+.booking-movie-meta {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    flex-wrap: wrap;
+}
+
+/* ---- BOOKING LAYOUT ---- */
+.booking-layout {
+    display: grid;
+    grid-template-columns: 1fr 380px;
+    gap: var(--space-xl);
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: var(--space-lg) var(--space-xl) var(--space-3xl);
+}
+
+/* ---- DATE & SHOWTIME SELECTORS ---- */
+.selector-section {
+    margin-bottom: var(--space-lg);
+}
+
+.selector-label {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-bottom: var(--space-sm);
+}
+
+.date-selector {
+    display: flex;
+    gap: var(--space-sm);
+}
+
+.date-chip {
+    padding: 10px 20px;
+    background: var(--bg-surface-card);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-md);
+    color: var(--text-secondary);
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    text-align: center;
+}
+
+.date-chip .date-day {
+    display: block;
+    font-size: 11px;
+    color: var(--text-muted);
+    margin-bottom: 2px;
+}
+
+.date-chip:hover {
+    border-color: #555;
+    background: var(--bg-surface-elevated);
+}
+
+.date-chip.active {
+    background: var(--primary-red);
+    border-color: var(--primary-red);
+    color: var(--text-primary);
+}
+
+.date-chip.active .date-day {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.showtime-selector {
+    display: flex;
+    gap: var(--space-sm);
+    flex-wrap: wrap;
+}
+
+.showtime-chip {
+    padding: 10px 18px;
+    background: var(--bg-surface-card);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-md);
+    color: var(--text-secondary);
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    text-align: center;
+}
+
+.showtime-chip .hall-label {
+    display: block;
+    font-size: 10px;
+    color: var(--text-muted);
+    margin-top: 2px;
+}
+
+.showtime-chip:hover {
+    border-color: #555;
+    background: var(--bg-surface-elevated);
+}
+
+.showtime-chip.active {
+    background: rgba(229, 9, 20, 0.15);
+    border-color: var(--primary-red);
+    color: var(--primary-red);
+}
+
+.showtime-chip.active .hall-label {
+    color: rgba(229, 9, 20, 0.7);
+}
+
+/* ---- CINEMA SCREEN ---- */
+.screen-container {
+    margin: var(--space-lg) 0 var(--space-xl);
+    text-align: center;
+}
+
+.cinema-screen {
+    width: 80%;
+    max-width: 480px;
+    height: 32px;
+    margin: 0 auto var(--space-xl);
+    background: linear-gradient(180deg, #3a3a3a 0%, #1a1a1a 100%);
+    border-radius: 50%;
+    position: relative;
+    transform: perspective(400px) rotateX(-25deg);
+    box-shadow: 0 0 30px rgba(150, 150, 150, 0.15),
+                0 -2px 20px rgba(200, 200, 200, 0.1);
+}
+
+.cinema-screen::after {
+    content: 'SCREEN';
+    position: absolute;
+    bottom: -24px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    color: var(--text-muted);
+    text-transform: uppercase;
+}
+
+/* ---- SEAT MAP ---- */
+.seat-map-container {
+    padding: var(--space-md);
+    background: var(--bg-surface-card);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border-subtle);
+}
+
+.seat-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    margin-bottom: 6px;
+}
+
+.row-label {
+    width: 24px;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--text-muted);
+    text-align: center;
+    flex-shrink: 0;
+}
+
+.seat-aisle {
+    width: 20px;
+    flex-shrink: 0;
+}
+
+.seat {
+    width: 34px;
+    height: 30px;
+    border-radius: 6px 6px 3px 3px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    border: 1.5px solid var(--seat-available-border);
+    background: var(--seat-available-bg);
+    color: var(--text-muted);
+    position: relative;
+}
+
+.seat:hover:not(.booked):not(.selected) {
+    border-color: var(--primary-red);
+    background: #333;
+    color: var(--text-primary);
+    transform: scale(1.1);
+}
+
+.seat.selected {
+    background: var(--seat-selected-bg);
+    border-color: var(--seat-selected-border);
+    color: var(--text-primary);
+    transform: scale(1.08);
+    box-shadow: 0 0 12px var(--primary-red-glow);
+}
+
+.seat.booked {
+    background: var(--seat-booked-bg);
+    border-color: var(--seat-booked-border);
+    color: #333;
+    cursor: not-allowed;
+    opacity: 0.5;
+}
+
+.seat.vip {
+    border-top: 2px solid var(--vip-accent);
+}
+
+.vip-row-indicator {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-xs);
+    margin-bottom: var(--space-sm);
+    padding: var(--space-xs) var(--space-md);
+}
+
+.vip-label {
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--vip-accent);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}
+
+.classic-divider {
+    margin: var(--space-sm) 0;
+    border: none;
+    border-top: 1px dashed var(--border-subtle);
+}
+
+/* ---- SEAT LEGEND ---- */
+.seat-legend {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-lg);
+    margin-top: var(--space-lg);
+    padding-top: var(--space-md);
+    border-top: 1px solid var(--border-subtle);
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    font-size: 12px;
+    color: var(--text-muted);
+}
+
+.legend-swatch {
+    width: 20px;
+    height: 16px;
+    border-radius: 4px 4px 2px 2px;
+    border: 1.5px solid;
+}
+
+.legend-swatch.swatch-available {
+    background: var(--seat-available-bg);
+    border-color: var(--seat-available-border);
+}
+
+.legend-swatch.swatch-selected {
+    background: var(--seat-selected-bg);
+    border-color: var(--seat-selected-border);
+}
+
+.legend-swatch.swatch-booked {
+    background: var(--seat-booked-bg);
+    border-color: var(--seat-booked-border);
+    opacity: 0.5;
+}
+
+.legend-swatch.swatch-vip {
+    background: var(--seat-available-bg);
+    border-color: var(--seat-available-border);
+    border-top: 2px solid var(--vip-accent);
+}
+
+/* ---- ORDER SUMMARY / CHECKOUT PANEL ---- */
+.checkout-panel {
+    position: sticky;
+    top: 80px;
+    background: var(--bg-surface-card);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border-subtle);
+    padding: var(--space-lg);
+    height: fit-content;
+}
+
+.checkout-title {
+    font-size: 18px;
+    font-weight: 800;
+    margin-bottom: var(--space-lg);
+    padding-bottom: var(--space-md);
+    border-bottom: 1px solid var(--border-subtle);
+}
+
+.checkout-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--space-sm);
+    font-size: 14px;
+}
+
+.checkout-row .label {
+    color: var(--text-muted);
+}
+
+.checkout-row .value {
+    font-weight: 600;
+}
+
+.checkout-divider {
+    margin: var(--space-md) 0;
+    border: none;
+    border-top: 1px solid var(--border-subtle);
+}
+
+.checkout-total {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 18px;
+    font-weight: 800;
+    color: var(--text-primary);
+    margin-bottom: var(--space-lg);
+}
+
+.checkout-total .total-amount {
+    color: var(--success-green);
+}
+
+.selected-seats-display {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-xs);
+    margin-bottom: var(--space-md);
+    min-height: 32px;
+}
+
+.selected-seat-tag {
+    padding: 4px 10px;
+    background: rgba(229, 9, 20, 0.15);
+    border: 1px solid rgba(229, 9, 20, 0.3);
+    border-radius: var(--radius-sm);
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--primary-red);
+}
+
+.no-seats-msg {
+    color: var(--text-muted);
+    font-size: 13px;
+    font-style: italic;
+}
+
+/* ---- CUSTOMER FORM ---- */
+.form-group {
+    margin-bottom: var(--space-md);
+}
+
+.form-label {
+    display: block;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text-muted);
+    margin-bottom: var(--space-xs);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+.form-control {
+    width: 100%;
+    height: 44px;
+    padding: 0 14px;
+    background: var(--bg-input);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-sm);
+    color: var(--text-primary);
+    font-size: 14px;
+    transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.form-control::placeholder {
+    color: #555;
+}
+
+.form-control:focus {
+    border-color: var(--primary-red);
+    box-shadow: 0 0 0 2px var(--primary-red-glow);
+}
+
+.form-control.error {
+    border-color: #E50914;
+    box-shadow: 0 0 0 2px rgba(229, 9, 20, 0.3);
+}
+
+.form-error {
+    font-size: 12px;
+    color: var(--primary-red);
+    margin-top: 4px;
+    display: none;
+}
+
+.form-error.visible {
+    display: block;
+}
+
+.form-section-title {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--text-secondary);
+    margin-bottom: var(--space-md);
+    padding-top: var(--space-md);
+    border-top: 1px solid var(--border-subtle);
+}
+
+.error-banner {
+    padding: var(--space-sm) var(--space-md);
+    background: rgba(229, 9, 20, 0.1);
+    border: 1px solid rgba(229, 9, 20, 0.3);
+    border-radius: var(--radius-sm);
+    color: var(--primary-red);
+    font-size: 13px;
+    margin-bottom: var(--space-md);
+    display: none;
+}
+
+.error-banner.visible {
+    display: block;
+}
+
+/* ---- RESPONSIVE BOOKING ---- */
+@media (max-width: 900px) {
+    .booking-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .checkout-panel {
+        position: static;
+    }
+}
+
+@media (max-width: 768px) {
+    .booking-layout {
+        padding: var(--space-md);
+    }
+
+    .booking-header {
+        padding: var(--space-md);
+    }
+
+    .seat {
+        width: 28px;
+        height: 26px;
+        font-size: 9px;
+    }
+
+    .seat-aisle {
+        width: 12px;
+    }
+
+    .seat-legend {
+        flex-wrap: wrap;
+        gap: var(--space-md);
+    }
+}
+
+@media (max-width: 480px) {
+    .seat {
+        width: 24px;
+        height: 22px;
+        font-size: 8px;
+        border-radius: 4px 4px 2px 2px;
+    }
+
+    .row-label {
+        width: 18px;
+        font-size: 10px;
+    }
+
+    .date-selector {
+        flex-wrap: wrap;
+    }
+}

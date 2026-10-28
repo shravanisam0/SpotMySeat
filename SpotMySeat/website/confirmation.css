@@ -1,0 +1,328 @@
+/* ============================================================
+   SpotMySeat — Cinema Ticket Booking System
+   confirmation.css — Confirmation Page Styles (confirmation.html)
+   
+   Contains:
+   - Success badge pop-in animation & confirmation header
+   - Digital cinema ticket voucher with perforated border & side notches
+   - Voucher ticket header, movie details grid & seat tags
+   - Payment summary & confirmation stamp badge
+   - Simulated cinema barcode strip
+   - Action buttons row (Print Ticket & Book Another)
+   - Printable receipt stylesheet (@media print)
+   - Confirmation-specific responsive media queries
+   ============================================================ */
+
+/* ---- CONFIRMATION CONTAINER ---- */
+.confirmation-container {
+    max-width: 640px;
+    margin: 0 auto;
+    padding: var(--space-2xl) var(--space-xl);
+    text-align: center;
+}
+
+.success-badge {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto var(--space-lg);
+    background: var(--success-green);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 40px;
+    color: white;
+    animation: pop-in 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+    box-shadow: 0 0 40px rgba(70, 211, 105, 0.3);
+}
+
+@keyframes pop-in {
+    0% {
+        transform: scale(0);
+        opacity: 0;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.confirmation-title {
+    font-size: 32px;
+    font-weight: 900;
+    margin-bottom: var(--space-sm);
+}
+
+.confirmation-subtitle {
+    font-size: 15px;
+    color: var(--text-muted);
+    margin-bottom: var(--space-xl);
+}
+
+/* ---- TICKET VOUCHER ---- */
+.ticket-voucher {
+    background: var(--bg-surface-card);
+    border-radius: var(--radius-xl);
+    border: 1px solid var(--border-subtle);
+    overflow: hidden;
+    text-align: left;
+    position: relative;
+    margin-bottom: var(--space-xl);
+}
+
+/* Circular cutout notches on left and right */
+.ticket-voucher::before,
+.ticket-voucher::after {
+    content: '';
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    background: var(--bg-canvas);
+    border-radius: 50%;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 2;
+}
+
+.ticket-voucher::before {
+    left: -12px;
+}
+
+.ticket-voucher::after {
+    right: -12px;
+}
+
+.ticket-header {
+    padding: var(--space-lg);
+    background: linear-gradient(135deg, var(--primary-red) 0%, #8B0000 100%);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.ticket-logo {
+    font-size: 18px;
+    font-weight: 900;
+    color: white;
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+}
+
+.ticket-logo .ticket-logo-img {
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
+    filter: drop-shadow(0 0 6px var(--primary-red-glow));
+}
+
+.ticket-id-section {
+    text-align: right;
+}
+
+.ticket-id-label {
+    font-size: 10px;
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.7);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
+
+.ticket-id-value {
+    font-size: 18px;
+    font-weight: 900;
+    color: white;
+    letter-spacing: 1px;
+}
+
+.ticket-body {
+    padding: var(--space-lg);
+}
+
+.ticket-movie-title {
+    font-size: 24px;
+    font-weight: 900;
+    margin-bottom: var(--space-md);
+    color: var(--text-primary);
+}
+
+.ticket-details-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-md);
+    margin-bottom: var(--space-lg);
+}
+
+.ticket-detail-item {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.ticket-detail-label {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+}
+
+.ticket-detail-value {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.ticket-seats-section {
+    margin-bottom: var(--space-lg);
+}
+
+.ticket-seats-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-sm);
+    margin-top: var(--space-sm);
+}
+
+.ticket-seat-badge {
+    padding: 6px 14px;
+    background: rgba(229, 9, 20, 0.15);
+    border: 1px solid rgba(229, 9, 20, 0.4);
+    border-radius: var(--radius-sm);
+    font-size: 14px;
+    font-weight: 800;
+    color: var(--primary-red);
+}
+
+.ticket-perforation {
+    border: none;
+    border-top: 2px dashed var(--border-subtle);
+    margin: 0;
+}
+
+.ticket-footer {
+    padding: var(--space-lg);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.ticket-total-section {
+    text-align: left;
+}
+
+.ticket-total-label {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+}
+
+.ticket-total-amount {
+    font-size: 28px;
+    font-weight: 900;
+    color: var(--success-green);
+}
+
+.ticket-status {
+    padding: 6px 16px;
+    background: rgba(70, 211, 105, 0.15);
+    border: 1px solid rgba(70, 211, 105, 0.4);
+    border-radius: var(--radius-sm);
+    font-size: 12px;
+    font-weight: 800;
+    color: var(--success-green);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+}
+
+/* ---- BARCODE SIMULATION ---- */
+.ticket-barcode {
+    padding: var(--space-md) var(--space-lg);
+    background: var(--bg-surface-elevated);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-sm);
+}
+
+.barcode-lines {
+    display: flex;
+    gap: 2px;
+    height: 40px;
+    align-items: flex-end;
+}
+
+.barcode-lines span {
+    width: 2px;
+    background: var(--text-muted);
+    border-radius: 1px;
+}
+
+.barcode-text {
+    font-size: 10px;
+    font-weight: 600;
+    color: var(--text-muted);
+    letter-spacing: 0.15em;
+    font-family: monospace;
+}
+
+/* ---- ACTION BUTTONS ROW ---- */
+.action-buttons {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-md);
+    flex-wrap: wrap;
+}
+
+/* ---- RESPONSIVE CONFIRMATION ---- */
+@media (max-width: 768px) {
+    .confirmation-container {
+        padding: var(--space-lg) var(--space-md);
+    }
+
+    .ticket-details-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .action-buttons {
+        flex-direction: column;
+    }
+
+    .action-buttons .btn-primary,
+    .action-buttons .btn-secondary {
+        width: 100%;
+    }
+}
+
+/* ---- PRINT STYLES ---- */
+@media print {
+    body {
+        background: white;
+        color: black;
+    }
+
+    .navbar,
+    .site-footer,
+    .action-buttons,
+    .back-link {
+        display: none !important;
+    }
+
+    .ticket-voucher {
+        border: 2px solid #333;
+        box-shadow: none;
+    }
+
+    .ticket-header {
+        background: #333 !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+    }
+
+    .confirmation-container {
+        padding: 0;
+    }
+}
